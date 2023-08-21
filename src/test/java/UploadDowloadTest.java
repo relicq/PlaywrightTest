@@ -3,16 +3,25 @@ import com.microsoft.playwright.options.*;
 import java.nio.file.Paths;
 import java.util.regex.Pattern;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-public class  UploadDowloadTest  {
+public class  UploadDowloadTest  extends BaseClassForTest{
+	@Before
+    public void setUp() {
+        super.setUp();
+       
+    }
+
+    @After
+    public void tearDown() {
+        super.tearDown();
+    }
+
 	@Test
 	public  void main() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
+
 	      page.navigate("https://demoqa.com/");
 	      page.locator("path").first().click();
 	      page.getByText("Upload and Download").click();
@@ -37,4 +46,4 @@ public class  UploadDowloadTest  {
 	      });
 	    }
 	  }
-	}
+	

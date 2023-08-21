@@ -1,18 +1,24 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
 
 import java.util.regex.Pattern;
 
-public class UITestCase {
-	
+public class UITestCase extends BaseClassForTest {
+	@Before
+    public void setUp() {
+        super.setUp();
+
+    }
+
+    @After
+    public void tearDown() {
+        super.tearDown();
+    }
 	@Test
 	  public void CheckListTest() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(3000);
 	      page.locator("svg").first().click();
@@ -47,15 +53,8 @@ public class UITestCase {
 	      page.getByLabel("Toggle").click();
 	      page.locator("label").filter(new Locator.FilterOptions().setHasText("Downloads")).getByRole(AriaRole.IMG).first().click();
 	    }
-	  }
 	@Test
 	 public void InputTextTest() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
-	     
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(4000);
 	      page.locator("div").filter(new Locator.FilterOptions().setHasText(Pattern.compile("^Elements$"))).nth(1).click();
@@ -73,15 +72,10 @@ public class UITestCase {
 	      page.getByText("Name:hrizu sharmaEmail:dummy@yopmail.comCurrent Address :test Permananet Address").click();
 	      page.getByText("Name:hrizu sharmaEmail:dummy@yopmail.comCurrent Address :test Permananet Address").click();
 	    }
-	  }
+	  
 	
 	@Test
 	  public void ButtonTest() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(3000);
 	      page.locator("path").first().click();
@@ -113,15 +107,10 @@ public class UITestCase {
 	      page.locator("li").filter(new Locator.FilterOptions().setHasText("Check Box")).click();
 	      page.getByText("Radio Button").click();
 	    }
-	  }
+	  
 	
 	@Test
 	 public void EditTableTest() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(3000);
 	      page.locator("svg").first().click();
@@ -237,14 +226,9 @@ public class UITestCase {
 	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Color Change")).click();
 	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Visible After 5 Seconds")).click();
 	    }
-	  }
+	  
 	@Test
 	 public void EmptyFormTest() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(4000);
 	      page.locator("div:nth-child(2) > div > .avatar > svg").click();
@@ -300,15 +284,10 @@ public class UITestCase {
 	      page.getByPlaceholder("Last Name").click();
 	      page.getByPlaceholder("Last Name").fill("");
 	    }
-	  }
+	  
 	
 	@Test
 	public void AutoCompleteTest () {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(3000);
 	      page.locator("div:nth-child(4) > div > .avatar > svg").click();
@@ -395,14 +374,9 @@ public class UITestCase {
 	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Start")).click();
 	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Reset")).click();
 	    }
-	  }
+	  
 	@Test
 	public void TabsandMenuTest() {
-	    try (Playwright playwright = Playwright.create()) {
-	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-	        .setHeadless(false));
-	      BrowserContext context = browser.newContext();
-	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.waitForTimeout(3000);
 	      page.locator("div:nth-child(4) > div > .avatar > svg").click();
@@ -481,5 +455,5 @@ public class UITestCase {
 	      page.locator("#selectMenuContainer > div:nth-child(4)").click();
 	    }
 	  }
-}
+
 
