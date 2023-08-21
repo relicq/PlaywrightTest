@@ -1,26 +1,18 @@
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
 
-public class ResizableBoxTest extends BaseClassForTest {
-	@Before
-    public void setUp() {
-        super.setUp();
-       
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
-    }
-
+public class ResizableBoxTest {
 
 	@Test
 	public void test() {
+	    try (Playwright playwright = Playwright.create()) {
+	        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+	          .setHeadless(false));
+	        BrowserContext context = browser.newContext();
+	        Page page = context.newPage();
 	        page.navigate("https://demoqa.com/");
 	        page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Interactions")).click();
 	        page.locator("li").filter(new Locator.FilterOptions().setHasText("Resizable")).click();
@@ -73,6 +65,6 @@ public class ResizableBoxTest extends BaseClassForTest {
             assertNotEquals(initialWidth, finalWidth);
             assertNotEquals(initialHeight, finalHeight);
 	    }
-
-	}
+    }
+}
 

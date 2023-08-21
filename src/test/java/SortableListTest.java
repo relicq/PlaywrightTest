@@ -1,24 +1,16 @@
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
 
-public class SortableListTest extends BaseClassForTest{
-	@Before
-    public void setUp() {
-        super.setUp();
-       
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
-    }
-
+public class SortableListTest {
 	@Test
 	public void SortInList() {
+	    try (Playwright playwright = Playwright.create()) {
+	      Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+	        .setHeadless(false));
+	      BrowserContext context = browser.newContext();
+	      Page page = context.newPage();
 	      page.navigate("https://demoqa.com/");
 	      page.locator("div:nth-child(3) > div > .avatar > svg").click();
 	      page.getByText("Frames", new Page.GetByTextOptions().setExact(true)).click();
@@ -67,3 +59,4 @@ public class SortableListTest extends BaseClassForTest{
 	    }
 	}
 
+}
