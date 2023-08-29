@@ -153,6 +153,7 @@ public class UITestCase extends BaseClassForTest {
 	      page.getByPlaceholder("Department").fill("Social Media");
 	      page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Submit")).click();
 	      page.locator("div:nth-child(6) > .rt-tr > div:nth-child(6)").click();
+	      page.waitForTimeout(2000);
 	      page.getByRole(AriaRole.GRIDCELL, new Page.GetByRoleOptions().setName("Dolly")).nth(1).click();
 	      page.getByRole(AriaRole.ROW, new Page.GetByRoleOptions().setName("Dolly Parton 40 test@somail.com 450000 Influencer Edit Delete")).getByTitle("Edit").locator("path").click();
 	      page.getByPlaceholder("First Name").click();
